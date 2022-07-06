@@ -25,6 +25,7 @@ import { FormatDateTimePipe } from 'app/core/pipes/format-datetime.pipe';
 import { CommonDirectivesModule } from 'app/directives/common/common-directives.module';
 import { CastModule } from 'app/modules/cast/cast.module';
 import { AppCommonModule } from 'app/modules/common/app-common.module';
+import { EntityModule } from 'app/modules/entity/entity.module';
 import { IxFormsModule } from 'app/modules/ix-forms/ix-forms.module';
 import { IxTableModule } from 'app/modules/ix-tables/ix-table.module';
 import { LayoutModule } from 'app/modules/layout/layout.module';
@@ -75,6 +76,7 @@ import { ZfsHealthCardComponent } from './components/zfs-health-card/zfs-health-
     MatProgressBarModule,
     NgxSkeletonLoaderModule,
     MatDialogModule,
+    EntityModule,
   ],
   declarations: [
     PoolsDashboardComponent,

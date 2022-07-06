@@ -5,6 +5,8 @@ import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TreeNode } from 'primeng/api';
+import { PoolStatus } from 'app/enums/pool-status.enum';
+import { VDevStatus } from 'app/enums/vdev-status.enum';
 import { TreeTableGlobalFilterEvent } from 'app/interfaces/events/tree-table-global-filter-event.interface';
 import { EntityTreeTable } from 'app/modules/entity/entity-tree-table/entity-tree-table.model';
 import { EntityTreeTableService } from 'app/modules/entity/entity-tree-table/entity-tree-table.service';
@@ -214,5 +216,16 @@ export class EntityTreeTableComponent implements OnInit, AfterViewInit {
       hasHorizontalScrollbar = parentNode.parentNode.scrollWidth > parentNode.parentNode.clientWidth;
     }
     return hasHorizontalScrollbar;
+  }
+
+  getStatusColor(status: PoolStatus | VDevStatus): string {
+    switch (status) {
+      case PoolStatus.Faulted:
+        return 'var(--red)';
+      case PoolStatus.Offline:
+        return 'var(--magenta)';
+      default:
+        return '';
+    }
   }
 }

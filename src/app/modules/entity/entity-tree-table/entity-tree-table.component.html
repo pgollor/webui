@@ -12,7 +12,12 @@
       <ng-container>
         <!-- Tree and Data Cells -->
         <td mat-cell *matCellDef="let element; let ii = index" [ngClass]="{ 'tree-cell': i == 0, 'sticky-border-right': i == 0 && isTableOverflow(), 'scroll-padding': isTableOverflow() }" (mouseover)="onHover($event, true)" (mouseout)="onHover($event, false)">
-          <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxLayout="row"
+            [fxLayoutAlign]="column.prop === 'status' ? 'center center' : 'start center'"
+            [style.background-color]="column.prop === 'status' ? getStatusColor(element.data[column.prop]) : ''"
+            [style.width]="column.prop === 'status' ? '70%' : ''"
+            [style.padding]="column.prop === 'status' ? '5px' : ''"
+          >
             <ng-container *ngIf="i == 0">
               <div [style.margin-left]="((element.indexPath.length - 1) * 16).toString() + 'px'" [ngClass]="{ 'invisible': element.children.length == 0 }">
                 <button mat-icon-button (click)="expandNode(element)">
@@ -21,6 +26,7 @@
                 </button>
               </div>
             </ng-container>
+            <mat-icon *ngIf="column.prop === 'name' && element.icon" [style.margin-right]="'6px'" [svgIcon]="element.icon"></mat-icon>
             {{element.data[column.prop]}}
             <span *ngIf="column.filesizePipe">{{ (element[column.prop] || 0) | filesize : {standard : "iec"} }}</span>
             <span *ngIf="!column.filesizePipe">{{ element[column.prop]?.value || element[column.prop] }}</span>

@@ -25,3 +25,5 @@
   class="pool"
   (poolsUpdated)="loadPools()"
 ></ix-dashboard-pool>
+
+<ix-entity-tree-table *ngIf="treeTableConfig.tableData && treeTableConfig.tableData.length > 0" [conf]="treeTableConfig"></ix-entity-tree-table>
